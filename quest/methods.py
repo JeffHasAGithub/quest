@@ -25,8 +25,11 @@ def get(url: str, headers: dict = None) -> Response:
 
     request = urllib.request.Request(url, headers=headers)
 
-    with urllib.request.urlopen(request) as resp:
-        retv = Response(status=resp.status,
-                        body=resp.read())
+    try:
+        with urllib.request.urlopen(request) as resp:
+            retv = Response(status=resp.status,
+                            body=resp.read())
+    except HttpError as err:
+        raise err
 
     return retv
