@@ -44,8 +44,11 @@ def post(url: str, headers: dict = None, data: dict = None) -> Response:
     encdata = urllib.parse.urlencode(data).encode("UTF-8")
     request = urllib.request.Request(url, headers=headers, data=encdata)
 
-    with urllib.request.urlopen(request) as resp:
-        retv = Response(status=resp.status,
-                        body=resp.read())
+    try:
+        with urllib.request.urlopen(request) as resp:
+            retv = Response(status=resp.status,
+                            body=resp.read())
+    except urllib.error.HTTPError as err:
+        raise HttpError(status=err.status) from err
 
     return retv
