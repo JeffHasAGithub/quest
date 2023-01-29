@@ -6,7 +6,8 @@ Tests for the quest.methods module"
 
 import unittest
 from unittest.mock import Mock, patch
-from quest.methods import get, post, HttpError
+from urllib.error import URLError, HTTPError
+from quest.methods import get, post, HttpError, UrlError
 
 _test_url = "https://test.com"
 _mock_funcname = "quest.methods.urllib.request.urlopen"
@@ -34,6 +35,13 @@ class TestGet(unittest.TestCase):
             get(_test_url)
 
         self.assertEqual(err_ctx.exception.status, 404)
+
+    def test_get_bad_url(self):
+        mock_ctx = self.mock_urlopen.return_value.__enter__
+        mock_ctx.side_effect = URLError(reason="bad url")
+
+        with self.assertRaises(UrlError):
+            get(_test_url)
 
 
 class TestPost(unittest.TestCase):
