@@ -19,7 +19,11 @@ class TestMethods(unittest.TestCase):
 
     def test_get(self):
         mock_func = self.mock_urlopen
-        mock_func.return_value.__enter__.return_value = Mock(status=200)
+        mock_retv = Mock(status=200,
+                         body=b"Hello!")
+
+        mock_func.return_value.__enter__.return_value = mock_retv
 
         response = get(_test_url)
         self.assertEqual(response.status, 200)
+        self.assertEqual(response.body, b"Hello!")
