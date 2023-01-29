@@ -6,11 +6,19 @@ the various actions/verbs used in the HTTP protocol.
 """
 
 from typing import NamedTuple
+from urllib.request import urlopen, Request
 
 
 class Response(NamedTuple):
     status: int
 
 
-def get(url: str, header: dict = None):
-    pass
+def get(url: str, headers: dict = None) -> Response:
+    if not headers:
+        headers = {}
+
+    request = Request(url, headers=headers)
+    with urlopen(request) as resp:
+        retv = Response(resp.status)
+
+    return retv
