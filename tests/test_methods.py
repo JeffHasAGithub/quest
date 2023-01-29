@@ -6,10 +6,10 @@ Tests for the quest.methods module"
 
 import unittest
 from unittest.mock import Mock, patch
-from quest.methods import get
+from quest.methods import get, HttpError
 
 _test_url = "https://test.com"
-_mock_funcname = "quest.methods.urlopen"
+_mock_funcname = "quest.methods.urllib.request.urlopen"
 
 
 class TestMethods(unittest.TestCase):
@@ -25,3 +25,10 @@ class TestMethods(unittest.TestCase):
         response = get(_test_url)
         self.assertEqual(response.status, 200)
         self.assertEqual(response.body, b"Hello!")
+
+    def test_get_404(self):
+        mock_retv = self.mock_urlopen.return_value.__enter__.return_value
+        mock_retv.status = 404
+
+        with self.assertRaises(HttpError):
+            get(_test_url)
