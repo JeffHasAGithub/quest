@@ -27,8 +27,8 @@ class TestMethods(unittest.TestCase):
         self.assertEqual(response.body, b"Hello!")
 
     def test_get_404(self):
-        mock_retv = self.mock_urlopen.return_value.__enter__.return_value
-        mock_retv.status = 404
+        mock_ctx = self.mock_urlopen.return_value.__enter__
+        mock_ctx.side_effect = HttpError()
 
         with self.assertRaises(HttpError):
             get(_test_url)
