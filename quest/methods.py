@@ -34,3 +34,7 @@ def get(url: str, headers: dict = None) -> Response:
         raise HttpError(status=err.status)
 
     return retv
+
+
+def post(url: str, headers: dict = None, data: dict = None) -> Response:
+    pass
