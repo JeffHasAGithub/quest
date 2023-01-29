@@ -6,7 +6,7 @@ Tests for the quest.methods module"
 
 import unittest
 from unittest.mock import Mock, patch
-from quest.methods import get, HttpError
+from quest.methods import get, post, HttpError
 
 _test_url = "https://test.com"
 _mock_funcname = "quest.methods.urllib.request.urlopen"
@@ -40,3 +40,13 @@ class TestPost(unittest.TestCase):
     def setUp(self):
         self.mock_urlopen_patch = patch(_mock_funcname)
         self.mock_urlopen = self.mock_urlopen_patch.start()
+
+    def test_post_200(self):
+        mock_retv = self.mock_urlopen.return_value.__enter__.return_value
+        mock_retv.status = 200
+
+        headers = {"Content-Type": "application/x-www-form-urlencoded"}
+        data = {"Name": "Jeff", "State": "Texas"}
+
+        response = post(_test_url, headers=headers, data=data)
+        self.assertEqual(response.status, 200)
