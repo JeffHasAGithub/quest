@@ -16,6 +16,11 @@ class HttpError(Exception):
         self.status = status
 
 
+class UrlError(Exception):
+    def __init__(self, reason):
+        self.reason = reason
+
+
 class Response(typing.NamedTuple):
     status: int
     body: bytes
