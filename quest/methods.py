@@ -10,6 +10,10 @@ import urllib.error
 import urllib.request
 
 
+class HttpError(Exception):
+    """HTTP error"""
+
+
 class Response(typing.NamedTuple):
     status: int
     body: bytes
