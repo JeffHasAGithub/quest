@@ -11,6 +11,7 @@ from urllib.request import urlopen, Request
 
 class Response(NamedTuple):
     status: int
+    body: bytes
 
 
 def get(url: str, headers: dict = None) -> Response:
