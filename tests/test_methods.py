@@ -12,7 +12,7 @@ _test_url = "https://test.com"
 _mock_funcname = "quest.methods.urllib.request.urlopen"
 
 
-class TestMethods(unittest.TestCase):
+class TestGet(unittest.TestCase):
     def setUp(self):
         self.mock_urlopen_patch = patch(_mock_funcname)
         self.mock_urlopen = self.mock_urlopen_patch.start()
