@@ -32,7 +32,7 @@ def get(url: str, headers: dict = None) -> Response:
             retv = Response(status=resp.status,
                             body=resp.read())
     except urllib.error.HTTPError as err:
-        raise HttpError(status=err.status)
+        raise HttpError(status=err.status) from err
 
     return retv
 
