@@ -60,7 +60,8 @@ class TestPost(unittest.TestCase):
 
     def test_post_404(self):
         mock_ctx = self.mock_urlopen.return_value.__enter__
-        mock_ctx.side_effect = HttpError(status=404)
+        mock_ctx.side_effect = HTTPError(url=_test_url, code=404,
+                                         hdrs=None, msg=None, fp=None)
 
         headers = {"Content-Type": "application/x-www-form-urlencoded"}
         data = {"Name": "Jeff", "State": "Texas"}
