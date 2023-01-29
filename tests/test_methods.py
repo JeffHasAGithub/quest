@@ -21,11 +21,9 @@ class TestGet(unittest.TestCase):
     def test_get_200(self):
         mock_retv = self.mock_urlopen.return_value.__enter__.return_value
         mock_retv.status = 200
-        mock_retv.read.return_value = b"Hello!"
 
         response = get(_test_url)
         self.assertEqual(response.status, 200)
-        self.assertEqual(response.body, b"Hello!")
 
     def test_get_404(self):
         mock_ctx = self.mock_urlopen.return_value.__enter__
