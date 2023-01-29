@@ -20,6 +20,7 @@ def get(url: str, headers: dict = None) -> Response:
 
     request = Request(url, headers=headers)
     with urlopen(request) as resp:
-        retv = Response(resp.status)
+        retv = Response(status=resp.status,
+                        body=resp.read())
 
     return retv
