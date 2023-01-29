@@ -50,3 +50,15 @@ class TestPost(unittest.TestCase):
 
         response = post(_test_url, headers=headers, data=data)
         self.assertEqual(response.status, 200)
+
+    def test_post_404(self):
+        mock_ctx = self.mock_urlopen.return_value.__enter__
+        mock_ctx.side_effect = HttpError(status=404)
+
+        headers = {"Content-Type": "application/x-www-form-urlencoded"}
+        data = {"Name": "Jeff", "State": "Texas"}
+
+        with self.assertRaises(HttpError) as err_ctx:
+            post(_test_url, headers=headers, data=data)
+
+        self.assertEqual(err_ctx.exception.status, 404)
