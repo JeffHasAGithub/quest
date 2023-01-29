@@ -18,11 +18,9 @@ class TestMethods(unittest.TestCase):
         self.mock_urlopen = self.mock_urlopen_patch.start()
 
     def test_get(self):
-        mock_func = self.mock_urlopen
-        mock_retv = Mock(status=200,
-                         body=b"Hello!")
-
-        mock_func.return_value.__enter__.return_value = mock_retv
+        mock_retv = self.mock_urlopen.return_value.__enter__.return_value
+        mock_retv.status = 200
+        mock_retv.read.return_value = b"Hello!"
 
         response = get(_test_url)
         self.assertEqual(response.status, 200)
