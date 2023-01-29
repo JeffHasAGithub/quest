@@ -37,4 +37,6 @@ class TestGet(unittest.TestCase):
 
 
 class TestPost(unittest.TestCase):
-    pass
+    def setUp(self):
+        self.mock_urlopen_patch = patch(_mock_funcname)
+        self.mock_urlopen = self.mock_urlopen_patch.start()
