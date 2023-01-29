@@ -11,7 +11,8 @@ import urllib.request
 
 
 class HttpError(Exception):
-    """HTTP error"""
+    def __init__(self, status: int):
+        self.status = status
 
 
 class Response(typing.NamedTuple):
