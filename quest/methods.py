@@ -10,3 +10,7 @@ from typing import NamedTuple
 
 class Response(NamedTuple):
     status: int
+
+
+def get(url: str, header: dict = None):
+    pass
