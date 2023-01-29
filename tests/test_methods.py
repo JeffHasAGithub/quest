@@ -34,3 +34,7 @@ class TestGet(unittest.TestCase):
             get(_test_url)
 
         self.assertEqual(err_ctx.exception.status, 404)
+
+
+class TestPost(unittest.TestCase):
+    pass
