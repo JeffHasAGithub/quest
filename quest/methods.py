@@ -38,6 +38,8 @@ def get(url: str, headers: dict = None) -> Response:
                             body=resp.read())
     except urllib.error.HTTPError as err:
         raise HttpError(status=err.status) from err
+    except urllib.error.URLError as err:
+        raise UrlError(reason=err.reason) from err
 
     return retv
 
