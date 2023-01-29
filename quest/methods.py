@@ -30,7 +30,7 @@ def get(url: str, headers: dict = None) -> Response:
         with urllib.request.urlopen(request) as resp:
             retv = Response(status=resp.status,
                             body=resp.read())
-    except HttpError as err:
-        raise err
+    except urllib.error.HTTPError as err:
+        raise HttpError(status=err.status)
 
     return retv
