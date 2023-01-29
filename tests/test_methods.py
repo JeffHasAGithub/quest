@@ -17,7 +17,7 @@ class TestMethods(unittest.TestCase):
         self.mock_urlopen_patch = patch(_mock_funcname)
         self.mock_urlopen = self.mock_urlopen_patch.start()
 
-    def test_get(self):
+    def test_get_200(self):
         mock_retv = self.mock_urlopen.return_value.__enter__.return_value
         mock_retv.status = 200
         mock_retv.read.return_value = b"Hello!"
