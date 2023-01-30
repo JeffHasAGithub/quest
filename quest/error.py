@@ -22,5 +22,8 @@ class HttpError(QuestError):
 
 
 class UrlError(QuestError):
+    """
+    Raised when bad url is used in Http request.
+    """
     def __init__(self, reason):
         self.reason = reason
