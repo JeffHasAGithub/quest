@@ -11,7 +11,7 @@ from quest.method import get, post
 from quest.error import UrlError, HttpError
 
 _test_url = "https://test.com"
-_mock_funcname = "quest.methods.urllib.request.urlopen"
+_mock_funcname = "quest.method.urllib.request.urlopen"
 
 
 class TestGet(unittest.TestCase):
