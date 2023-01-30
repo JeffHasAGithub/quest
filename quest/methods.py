@@ -9,16 +9,7 @@ import typing
 import urllib.error
 import urllib.parse
 import urllib.request
-
-
-class HttpError(Exception):
-    def __init__(self, status: int):
-        self.status = status
-
-
-class UrlError(Exception):
-    def __init__(self, reason):
-        self.reason = reason
+import quest.error
 
 
 class Response(typing.NamedTuple):
@@ -37,9 +28,9 @@ def get(url: str, headers: dict = None) -> Response:
             retv = Response(status=resp.status,
                             body=resp.read())
     except urllib.error.HTTPError as err:
-        raise HttpError(status=err.status) from err
+        raise quest.error.HttpError(status=err.status) from err
     except urllib.error.URLError as err:
-        raise UrlError(reason=err.reason) from err
+        raise quest.error.UrlError(reason=err.reason) from err
 
     return retv
 
@@ -56,6 +47,6 @@ def post(url: str, headers: dict = None, data: dict = None) -> Response:
             retv = Response(status=resp.status,
                             body=resp.read())
     except urllib.error.HTTPError as err:
-        raise HttpError(status=err.status) from err
+        raise quest.error.HttpError(status=err.status) from err
 
     return retv
