@@ -19,3 +19,8 @@ class HttpError(QuestError):
     """
     def __init__(self, status: int):
         self.status = status
+
+
+class UrlError(QuestError):
+    def __init__(self, reason):
+        self.reason = reason
