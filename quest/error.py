@@ -11,3 +11,8 @@ class QuestError(Exception):
     The abstract base class inherited by
     all errors raised within the package.
     """
+
+
+class HttpError(Exception):
+    def __init__(self, status: int):
+        self.status = status
