@@ -7,7 +7,8 @@ Tests for the quest.methods module"
 import unittest
 from unittest.mock import Mock, patch
 from urllib.error import URLError, HTTPError
-from quest.methods import get, post, HttpError, UrlError
+from quest.methods import get, post
+from quest.error import UrlError, HttpError
 
 _test_url = "https://test.com"
 _mock_funcname = "quest.methods.urllib.request.urlopen"
