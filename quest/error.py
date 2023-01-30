@@ -13,6 +13,9 @@ class QuestError(Exception):
     """
 
 
-class HttpError(Exception):
+class HttpError(QuestError):
+    """
+    Raised when bad Http response is received.
+    """
     def __init__(self, status: int):
         self.status = status
