@@ -57,6 +57,9 @@ class TestPost(unittest.TestCase):
         self.mock_urlopen_patch = unittest.mock.patch(_mock_funcname)
         self.mock_urlopen = self.mock_urlopen_patch.start()
 
+        self.headers = {"Content-Type": "application/x-www-form-urlencoded"}
+        self.data = {"Name": "Jeff", "State": "Texas"}
+
     def test_post_200(self):
         mock_retv = self.mock_urlopen.return_value.__enter__.return_value
         mock_retv.status = 200
