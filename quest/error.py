@@ -36,3 +36,5 @@ class TimeoutError(QuestError):
     """
     Raised when Http request times out
     """
+    def __init__(self, url: str):
+        super().__init__(url)
