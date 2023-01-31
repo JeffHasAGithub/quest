@@ -44,6 +44,13 @@ class TestGet(unittest.TestCase):
         with self.assertRaises(quest.error.UrlError):
             quest.method.get(_test_url)
 
+    def test_get_timeout(self):
+        mock_ctx = self.mock_urlopen.return_value.__enter__
+        mock_ctx.side_effect = TimeoutError()
+
+        with self.assertRaises(quest.error.TimeoutError):
+            quest.method.get(_test_url)
+
 
 class TestPost(unittest.TestCase):
     def setUp(self):
@@ -73,3 +80,23 @@ class TestPost(unittest.TestCase):
             quest.method.post(_test_url, headers=headers, data=data)
 
         self.assertEqual(err_ctx.exception.status, 404)
+
+    def test_post_bad_url(self):
+        mock_ctx = self.mock_urlopen.return_value.__enter__
+        mock_ctx.side_effect = urllib.error.URLError(reason="bad url")
+
+        headers = {"Content-Type": "application/x-www-form-urlencoded"}
+        data = {"Name": "Jeff", "State": "Texas"}
+
+        with self.assertRaises(quest.error.UrlError):
+            quest.method.post(_test_url, headers=headers, data=data)
+
+    def test_post_timeout(self):
+        mock_ctx = self.mock_urlopen.return_value.__enter__
+        mock_ctx.side_effect = TimeoutError()
+
+        headers = {"Content-Type": "application/x-www-form-urlencoded"}
+        data = {"Name": "Jeff", "State": "Texas"}
+
+        with self.assertRaises(quest.error.TimeoutError):
+            quest.method.post(_test_url, headers=headers, data=data)
