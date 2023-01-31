@@ -11,9 +11,8 @@ class QuestError(Exception):
     The base class inherited by all
     errors raised within the package.
     """
-    def __init___(self, url: str, reason: str):
+    def __init___(self, url: str):
         self.url = url
-        self.reason = reason
 
 
 class HttpError(QuestError):
