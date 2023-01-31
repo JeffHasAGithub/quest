@@ -47,7 +47,7 @@ def post(url: str, headers: dict = None, data: dict = None) -> Response:
             retv = Response(status=resp.status,
                             body=resp.read())
     except urllib.error.HTTPError as err:
-        raise quest.error.HttpError(status=err.status) from err
+        raise quest.error.HttpError(url, err.status) from err
     except urllib.error.URLError as err:
         raise quest.error.UrlError(reason=err.reason) from err
 
