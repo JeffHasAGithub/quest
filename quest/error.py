@@ -19,7 +19,8 @@ class HttpError(QuestError):
     """
     Raised when bad Http response is received.
     """
-    def __init__(self, status: int):
+    def __init__(self, url: str, status: int):
+        super().__init__(url)
         self.status = status
 
 
