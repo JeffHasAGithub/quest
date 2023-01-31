@@ -64,10 +64,8 @@ class TestPost(unittest.TestCase):
         mock_retv = self.mock_urlopen.return_value.__enter__.return_value
         mock_retv.status = 200
 
-        headers = {"Content-Type": "application/x-www-form-urlencoded"}
-        data = {"Name": "Jeff", "State": "Texas"}
-
-        response = quest.method.post(_test_url, headers=headers, data=data)
+        response = quest.method.post(_test_url, headers=self.headers,
+                                     data=self.data)
         self.assertEqual(response.status, 200)
 
     def test_post_404(self):
