@@ -35,7 +35,8 @@ def get(url: str, headers: dict = None) -> Response:
     return retv
 
 
-def post(url: str, headers: dict = None, data: dict = None) -> Response:
+def post(url: str, headers: dict = None,
+         data: dict = None, timeout: int = 10) -> Response:
     if not headers:
         headers = {"Content-Type": "application/x-www-form-urlencoded"}
 
