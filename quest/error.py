@@ -28,8 +28,8 @@ class UrlError(QuestError):
     """
     Raised when bad url is used in Http request.
     """
-    def __init__(self, reason):
-        self.reason = reason
+    def __init__(self, url: str):
+        super().__init__(url)
 
 
 class TimeoutError(QuestError):
