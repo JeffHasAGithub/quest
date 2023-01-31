@@ -17,7 +17,7 @@ class Response(typing.NamedTuple):
     body: bytes
 
 
-def get(url: str, headers: dict = None) -> Response:
+def get(url: str, headers: dict = None, timeout: int = 10) -> Response:
     if not headers:
         headers = {}
 
