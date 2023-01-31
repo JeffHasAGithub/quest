@@ -44,6 +44,13 @@ class TestGet(unittest.TestCase):
         with self.assertRaises(quest.error.UrlError):
             quest.method.get(_test_url)
 
+    def test_get_timeout(self):
+        mock_ctx = self.mock_urlopen.return_value.__enter__
+        mock_ctx.side_effect = TimeoutError()
+
+        with self.assertRaises(quest.error.TimeoutError):
+            quest.method.get(_test_url)
+
 
 class TestPost(unittest.TestCase):
     def setUp(self):
