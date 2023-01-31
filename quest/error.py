@@ -8,9 +8,12 @@ exceptions raised by the quest package.
 
 class QuestError(Exception):
     """
-    The abstract base class inherited by
-    all errors raised within the package.
+    The base class inherited by all
+    errors raised within the package.
     """
+    def __init___(self, url: str, reason: str):
+        self.url = url
+        self.reason = reason
 
 
 class HttpError(QuestError):
