@@ -90,8 +90,5 @@ class TestPost(unittest.TestCase):
         mock_ctx = self.mock_urlopen.return_value.__enter__
         mock_ctx.side_effect = TimeoutError()
 
-        headers = {"Content-Type": "application/x-www-form-urlencoded"}
-        data = {"Name": "Jeff", "State": "Texas"}
-
         with self.assertRaises(quest.error.TimeoutError):
-            quest.method.post(_test_url, headers=headers, data=data)
+            quest.method.post(_test_url, headers=self.headers, data=self.data)
