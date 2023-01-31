@@ -24,13 +24,15 @@ def get(url: str, headers: dict = None, timeout: int = 10) -> Response:
     request = urllib.request.Request(url, headers=headers)
 
     try:
-        with urllib.request.urlopen(request) as resp:
+        with urllib.request.urlopen(request, timeout=timeout) as resp:
             retv = Response(status=resp.status,
                             body=resp.read())
     except urllib.error.HTTPError as err:
         raise quest.error.HttpError(url, err.status) from err
     except urllib.error.URLError as err:
         raise quest.error.UrlError(url) from err
+    except TimeoutError as err:
+        raise quest.error.TimeoutError(url) from err
 
     return retv
 
@@ -44,7 +46,7 @@ def post(url: str, headers: dict = None,
     request = urllib.request.Request(url, headers=headers, data=encdata)
 
     try:
-        with urllib.request.urlopen(request, timeout=10) as resp:
+        with urllib.request.urlopen(request, timeout=timeout) as resp:
             retv = Response(status=resp.status,
                             body=resp.read())
     except urllib.error.HTTPError as err:
