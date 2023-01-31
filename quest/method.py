@@ -30,7 +30,7 @@ def get(url: str, headers: dict = None) -> Response:
     except urllib.error.HTTPError as err:
         raise quest.error.HttpError(url, err.status) from err
     except urllib.error.URLError as err:
-        raise quest.error.UrlError(reason=err.reason) from err
+        raise quest.error.UrlError(url) from err
 
     return retv
 
