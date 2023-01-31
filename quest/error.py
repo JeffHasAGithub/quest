@@ -27,3 +27,9 @@ class UrlError(QuestError):
     """
     def __init__(self, reason):
         self.reason = reason
+
+
+class TimeoutError(QuestError):
+    """
+    Raised when Http request times out
+    """
