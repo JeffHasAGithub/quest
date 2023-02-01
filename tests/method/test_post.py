@@ -11,8 +11,7 @@ import urllib.error
 import quest.error
 import quest.method
 
-_test_url = "https://test.com"
-_mock_funcname = "quest.method.urllib.request.urlopen"
+from .common import _test_url, _mock_funcname
 
 
 class TestPost(unittest.TestCase):

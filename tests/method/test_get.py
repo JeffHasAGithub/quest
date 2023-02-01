@@ -13,6 +13,7 @@ import quest.method
 
 from .common import _test_url, _mock_funcname
 
+
 class TestGet(unittest.TestCase):
     def setUp(self):
         self.mock_urlopen_patch = unittest.mock.patch(_mock_funcname)
