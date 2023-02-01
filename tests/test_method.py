@@ -74,11 +74,8 @@ class TestPost(unittest.TestCase):
                                                       hdrs=None, msg=None,
                                                       fp=None)
 
-        headers = {"Content-Type": "application/x-www-form-urlencoded"}
-        data = {"Name": "Jeff", "State": "Texas"}
-
         with self.assertRaises(quest.error.HttpError) as err_ctx:
-            quest.method.post(_test_url, headers=headers, data=data)
+            quest.method.post(_test_url, headers=self.headers, data=self.data)
 
         self.assertEqual(err_ctx.exception.status, 404)
 
