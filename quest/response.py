@@ -8,7 +8,6 @@ working with Http responses.
 
 
 class Response():
-
     def __init__(self, url: str, status: int,
                  headers: dict = {}, content: bytes = b""):
         self._url = url
