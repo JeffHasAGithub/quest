@@ -10,5 +10,7 @@ import typing
 
 
 class Response(typing.NamedTuple):
+    url: str
     status: int
-    body: bytes
+    headers: dict
+    content: bytes
