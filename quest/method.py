@@ -8,11 +8,11 @@ the various actions/verbs used in the HTTP protocol.
 import urllib.error
 import urllib.parse
 import urllib.request
-import quest.error as error
-import quest.response as response
+import quest.error
+from quest.response import Response
 
 
-def get(url: str, headers: dict = None, timeout: int = 10) -> quest.response.Response:
+def get(url: str, headers: dict = None, timeout: int = 10) -> Response:
     if not headers:
         headers = {}
 
@@ -20,8 +20,7 @@ def get(url: str, headers: dict = None, timeout: int = 10) -> quest.response.Res
 
     try:
         with urllib.request.urlopen(request, timeout=timeout) as resp:
-            retv = quest.response.Response(url, resp.status,
-                                           resp.headers, resp.read())
+            retv = Response(url, resp.status, resp.headers, resp.read())
     except urllib.error.HTTPError as err:
         raise quest.error.HttpError(url, err.status) from err
     except urllib.error.URLError as err:
@@ -42,8 +41,7 @@ def post(url: str, headers: dict = None,
 
     try:
         with urllib.request.urlopen(request, timeout=timeout) as resp:
-            retv = quest.response.Response(url, resp.status,
-                                           resp.headers, resp.read())
+            retv = Response(url, resp.status, resp.headers, resp.read())
     except urllib.error.HTTPError as err:
         raise quest.error.HttpError(url, err.status) from err
     except urllib.error.URLError as err:
