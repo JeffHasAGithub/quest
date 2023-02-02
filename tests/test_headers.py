@@ -19,6 +19,13 @@ class TestHeaders(unittest.TestCase):
         self.headers = quest.headers.Headers(test_headers)
         self.assertDictEqual(self.headers._headers, test_headers)
 
+    def test_headers_new_invalid(self):
+        test_headers = {1: [1, 2, 3],
+                        "key2": "val2"}
+
+        with self.assertRaises(ValueError):
+            quest.headers.Headers(test_headers)
+
     def test_headers_set_valid(self):
         key = "key1"
         val = "val1"
