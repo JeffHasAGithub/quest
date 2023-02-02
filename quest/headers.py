@@ -22,7 +22,7 @@ class Headers():
 
     def validate(self):
         return any(((k, v) for k, v in self._headers.items()
-                    if not _valid_string(k, v)))
+                    if not _valid_kvpair(k, v)))
 
 
 def _valid_string(string: any) -> bool:
