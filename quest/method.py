@@ -5,17 +5,11 @@ The methods module contains functions that implement
 the various actions/verbs used in the HTTP protocol.
 """
 
-import typing
 import urllib.error
 import urllib.parse
 import urllib.request
 import quest.error
 import quest.response
-
-
-class Response(typing.NamedTuple):
-    status: int
-    body: bytes
 
 
 def get(url: str, headers: dict = None, timeout: int = 10) -> Response:
