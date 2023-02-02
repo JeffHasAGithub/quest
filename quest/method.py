@@ -8,11 +8,11 @@ the various actions/verbs used in the HTTP protocol.
 import urllib.error
 import urllib.parse
 import urllib.request
-import quest.error
-import quest.response
+import quest.error as error
+import quest.response as response
 
 
-def get(url: str, headers: dict = None, timeout: int = 10) -> Response:
+def get(url: str, headers: dict = None, timeout: int = 10) -> quest.response.Response:
     if not headers:
         headers = {}
 
