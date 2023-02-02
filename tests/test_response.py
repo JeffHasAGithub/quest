@@ -37,3 +37,7 @@ class TestResponse(unittest.TestCase):
 
         self.assertEqual(default_arg, "This is a response body")
         self.assertEqual(with_arg, "This is a response body")
+
+    def test_content_lookup_err(self):
+        with self.assertRaises(LookupError):
+            self.response.get_content("invalid")
