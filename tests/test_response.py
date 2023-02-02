@@ -26,3 +26,7 @@ class TestResponse(unittest.TestCase):
 
         self.assertEqual(header_1_val, "one header")
         self.assertEqual(header_2_val, "two header")
+
+    def test_headers_invalid(self):
+        bad_header_val = self.response.get_header("header_3")
+        self.assertIsNone(bad_header_val)
