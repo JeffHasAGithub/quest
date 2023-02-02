@@ -9,4 +9,5 @@ requests and response.
 
 
 class Headers():
-    pass
+    def __init__(self):
+        self._headers: dict = {}
