@@ -48,8 +48,8 @@ def post(url: str, headers: dict = None,
 
     try:
         with urllib.request.urlopen(request, timeout=timeout) as resp:
-            retv = Response(status=resp.status,
-                            body=resp.read())
+            retv = quest.response.Response(url, resp.status,
+                                           resp.headers, resp.read())
     except urllib.error.HTTPError as err:
         raise quest.error.HttpError(url, err.status) from err
     except urllib.error.URLError as err:
