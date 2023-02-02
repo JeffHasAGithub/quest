@@ -19,3 +19,10 @@ class TestResponse(unittest.TestCase):
 
         self.response = quest.response.Response(test_url, test_status,
                                                 test_headers, test_content)
+
+    def test_headers_valid(self):
+        header_1_val = self.response.get_header("header_1")
+        header_2_val = self.response.get_header("header_2")
+
+        self.assertEqual(header_1_val, "one header")
+        self.assertEqual(header_2_val, "two header")
