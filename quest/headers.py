@@ -11,3 +11,6 @@ requests and response.
 class Headers():
     def __init__(self):
         self._headers: dict = {}
+
+    def get(self, key: str):
+        return self._headers.get(key)
