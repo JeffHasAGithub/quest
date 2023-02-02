@@ -15,6 +15,11 @@ class Headers():
     def get(self, key: str):
         return self._headers.get(key)
 
+    def set(self, key: str, val: str):
+        if not _valid_kvpair(key, val):
+            raise ValueError(key, val)
+        self._headers[key] = val
+
 
 def _valid_string(string: any) -> bool:
     return isinstance(string, str)
