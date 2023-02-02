@@ -26,4 +26,4 @@ class Response():
 
     @property
     def headers(self, key: str):
-        return self.headers.get(key)
+        return self._headers.get(key)
