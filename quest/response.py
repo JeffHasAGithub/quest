@@ -21,5 +21,9 @@ class Response():
         return self._url
 
     @property
+    def status(self):
+        return self._status
+
+    @property
     def headers(self, key: str):
         return self.headers.get(key)
