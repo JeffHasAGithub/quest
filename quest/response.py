@@ -17,5 +17,9 @@ class Response():
         self._content = content
 
     @property
+    def url(self):
+        return self._url
+
+    @property
     def headers(self, key: str):
         return self.headers.get(key)
