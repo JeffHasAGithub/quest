@@ -14,10 +14,13 @@ class TestHeaders(unittest.TestCase):
         self.headers = quest.headers.Headers()
 
     def test_headers_set_valid(self):
-        self.headers.set("key1", "val1")
+        key = "key1"
+        val = "val1"
 
-        self.assertIn("key1", self.headers._headers)
-        self.assertEqual(self.headers.get("key1"), "val1")
+        self.headers.set(key, val)
+
+        self.assertIn(key, self.headers._headers)
+        self.assertEqual(self.headers.get(key), val)
 
     def test_headers_set_invalid(self):
         bad_key = 1
