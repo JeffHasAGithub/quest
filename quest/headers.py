@@ -6,3 +6,7 @@ Headers class and various helper functions for
 working with the header entries found Http
 requests and response.
 """
+
+
+class Headers():
+    pass
