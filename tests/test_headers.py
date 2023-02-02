@@ -10,4 +10,9 @@ import quest.headers
 
 
 class TestHeaders(unittest.TestCase):
-    pass
+    def test_headers_set_valid(self):
+        headers = quest.headers.Headers()
+        headers.set("key1", "val1")
+
+        self.assertIn("key1", headers._headers)
+        self.assertEqual(headers.get("key1"), "val1")
