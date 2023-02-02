@@ -25,9 +25,8 @@ class Response():
         return self._status
 
     @property
-    def headers(self, key: str):
-        return self._headers.get(key)
-
-    @property
     def content(self):
         return self._content
+
+    def set_header(self, key: str):
+        return self._headers.get(key)
