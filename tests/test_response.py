@@ -17,4 +17,5 @@ class TestResponse(unittest.TestCase):
                         "header_2": "two header"}
         test_content = b"This is a response body"
 
-        response = quest.response.Response()
+        self.response = quest.response.Response(test_url, test_status,
+                                                test_headers, test_content)
