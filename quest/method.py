@@ -9,7 +9,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import quest.error
-import quest.response
+from quest.response import Response
 
 
 def get(url: str, headers: dict = None, timeout: int = 10) -> Response:
