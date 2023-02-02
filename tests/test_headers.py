@@ -30,3 +30,13 @@ class TestHeaders(unittest.TestCase):
             self.headers.set(bad_key, bad_val)
         self.assertIn(bad_key, err_ctx.exception.args)
         self.assertIn(bad_val, err_ctx.exception.args)
+
+    def test_headers_is_valid(self):
+        bad_key = 1
+        good_key = "key1"
+        good_val = "val1"
+
+        self.headers._headers = {bad_key: good_val,
+                                 good_key: good_val}
+
+        self.assertFalse(self.headers.is_valid())
