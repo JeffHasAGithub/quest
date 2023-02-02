@@ -14,3 +14,11 @@ class Headers():
 
     def get(self, key: str):
         return self._headers.get(key)
+
+
+def _valid_string(string: any) -> bool:
+    return isinstance(string, str)
+
+
+def _valid_kvpair(key: any, val: any) -> bool:
+    return _valid_string(key) and _valid_string(val)
