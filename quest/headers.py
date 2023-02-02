@@ -20,9 +20,9 @@ class Headers():
             raise ValueError(key, val)
         self._headers[key] = val
 
-    def validate(self):
-        return any(((k, v) for k, v in self._headers.items()
-                    if not _valid_kvpair(k, v)))
+    def is_valid(self) -> bool:
+        return not any(((k, v) for k, v in self._headers.items()
+                        if not _valid_kvpair(k, v)))
 
 
 def _valid_string(string: any) -> bool:
