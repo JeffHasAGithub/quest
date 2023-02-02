@@ -27,5 +27,5 @@ class Response():
     def get_content(self, enc: str):
         return self._content.decode(enc)
 
-    def set_header(self, key: str):
+    def get_header(self, key: str):
         return self._headers.get(key)
