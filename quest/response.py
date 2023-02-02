@@ -24,7 +24,7 @@ class Response():
     def status(self):
         return self._status
 
-    def get_content(self, enc: str):
+    def get_content(self, enc: str = "utf-8"):
         return self._content.decode(enc)
 
     def get_header(self, key: str):
