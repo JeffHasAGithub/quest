@@ -10,4 +10,11 @@ import quest.response
 
 
 class TestResponse(unittest.TestCase):
-    pass
+    def setUp(self):
+        test_url = "https://test.com"
+        test_status = 200
+        test_headers = {"header_1": "one header",
+                        "header_2": "two header"}
+        test_content = b"This is a response body"
+
+        response = quest.response.Response()
