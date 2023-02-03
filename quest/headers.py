@@ -9,8 +9,10 @@ requests and response.
 
 
 class Headers():
-    def __init__(self):
-        self._headers: dict = {}
+    def __init__(self, headers: dict = {}):
+        self._headers = headers
+        if not self.is_valid():
+            raise ValueError
 
     def get(self, key: str):
         return self._headers.get(key)

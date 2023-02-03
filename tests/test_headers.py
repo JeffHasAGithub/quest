@@ -1,5 +1,4 @@
-"""
-test_headers.py
+""" test_headers.py
 
 Tests for the 'Headers' class found
 in the quest.headers module
@@ -12,6 +11,20 @@ import quest.headers
 class TestHeaders(unittest.TestCase):
     def setUp(self):
         self.headers = quest.headers.Headers()
+
+    def test_headers_new_valid(self):
+        test_headers = {"key1": "val1",
+                        "key2": "val2"}
+
+        self.headers = quest.headers.Headers(test_headers)
+        self.assertDictEqual(self.headers._headers, test_headers)
+
+    def test_headers_new_invalid(self):
+        test_headers = {1: [1, 2, 3],
+                        "key2": "val2"}
+
+        with self.assertRaises(ValueError):
+            quest.headers.Headers(test_headers)
 
     def test_headers_set_valid(self):
         key = "key1"
