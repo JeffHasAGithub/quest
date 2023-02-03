@@ -27,6 +27,8 @@ def get(url: str, headers: dict = None, timeout: int = 10) -> Response:
         raise quest.error.UrlError(url) from err
     except TimeoutError as err:
         raise quest.error.TimeoutError(url) from err
+    except ValueError as err:
+        raise quest.error.HeadersError(headers) from err
 
     return retv
 
@@ -48,5 +50,7 @@ def post(url: str, headers: dict = None,
         raise quest.error.UrlError(url) from err
     except TimeoutError as err:
         raise quest.error.TimeoutError(url) from err
+    except ValueError as err:
+        raise quest.error.HeadersError(headers) from err
 
     return retv

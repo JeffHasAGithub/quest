@@ -6,13 +6,15 @@ Response class and various helper functions for
 working with Http responses.
 """
 
+from quest.headers import Headers
+
 
 class Response():
     def __init__(self, url: str, status: int,
                  headers: dict = {}, content: bytes = b""):
         self._url = url
         self._status = status
-        self._headers = headers
+        self._headers = Headers(headers)
         self._content = content
 
     @property

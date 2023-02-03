@@ -62,3 +62,17 @@ class TimeoutError(QuestError):
 
     def __repr__(self):
         return f"<TimeoutError url='{self.url}'>"
+
+
+class HeadersError(ValueError):
+    """
+    Raised when ValueError is raised by Headers class
+    """
+    def __init__(self, headers: dict):
+        self.headers = headers
+
+    def __str__(self):
+        return f"HeadersError: {self.headers}"
+
+    def __repr__(self):
+        return f"<HeadersError: headers='{self.headers}'>"
